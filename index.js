@@ -14,7 +14,7 @@ hexo.extend.filter.register('after_post_render', function(data){
 	// In hexo 3.1.1, the permalink of "about" page is like ".../about/index.html".
 	var endPos = link.lastIndexOf('/') + 1;
     link = link.substring(beginPos, endPos);
-
+	
     var toprocess = ['excerpt', 'more', 'content'];
     for(var i = 0; i < toprocess.length; i++){
       var key = toprocess[i];
@@ -43,8 +43,41 @@ hexo.extend.filter.register('after_post_render', function(data){
 			  if(srcArray.length > 1)
 				srcArray.shift();
 			  src = srcArray.join('/');
+			  //$(this).attr('src', config.root + link + src);
+			  //notes: src is image name,and config.root is localhost:port,the middle cahr string is my local image Repository
+			  if(link.substring(0,3)=="第一章"){
+				//第一章的所有图片放到这个文件夹下
+				link="image1/";	
+				console.info&&console.info("judement the fist capture!");
+				}
+			  else if(link.substring(0,3)=="第二章"){
+				link="image2/";				
+				console.info&&console.info("judement the second capture!");
+				}
+			else if(link.substring(0,3)=="第三章"){
+				link="image3/";				
+				console.info&&console.info("judement the third capture!");
+				}
+			else if(link.substring(0,3)=="第四章"){
+				link="image4/";				
+				console.info&&console.info("judement the fourth capture!");
+				}
+			else if(link.substring(0,3)=="第五章"){
+				link="image5/";				
+				console.info&&console.info("judement the fifth capture!");
+				}
+			else if(link.substring(0,3)=="第六章"){
+				link="image6/";				
+				console.info&&console.info("judement the sixth capture!");
+				}
+			else if(link.substring(0,3)=="第七章"){
+				link="image7/";				
+				console.info&&console.info("judement the seventh capture!");
+				}
+
+			  //$(this).attr('src', config.root + "image1/" + src);
 			  $(this).attr('src', config.root + link + src);
-			  console.info&&console.info("update link as:-->"+config.root + link + src);
+			  console.info&&console.info("update link as:-->"+config.root + "==" + link + "==" + src);
 			}
 		}else{
 			console.info&&console.info("no src attr, skipped...");
